@@ -4,9 +4,12 @@ from streamdeck_uinput import _uinput
 
 class UInput:
 
-    def __init__(self):
+    def __init__(self, events=None,
+                 name='py-evdev-uinput',
+                 vendor=0x1, product=0x1, version=0x1, bustype=0x3,
+                 devnode='/dev/uinput', phys='py-evdev-uinput', input_props=None):
         # Define the device node
-        self.device_node = "/dev/uinput"
+        self.device_node = devnode
 
         # Open the uinput device
         self.fd = _uinput.open_device(self.device_node)
@@ -15,10 +18,10 @@ class UInput:
         self._enable_key_events()
 
         # Set up the uinput device
-        self.name = "py-keyboard"
-        self.vendor_id = 0x1
-        self.product_id = 0x1
-        self.version_id = 1
+        self.name = name
+        self.vendor_id = vendor
+        self.product_id = product
+        self.version_id = version
         _uinput.setup_device(self.fd, self.name, self.vendor_id, self.product_id, self.version_id)
 
     def _enable_key_events(self):
