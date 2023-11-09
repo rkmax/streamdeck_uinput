@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <linux/uinput.h>
 #include <fcntl.h>
-#include <unistd.h>
-#include <string.h>
 
 int _close_fd(int fd) {
     if (ioctl(fd, UI_DEV_DESTROY) < 0) {
