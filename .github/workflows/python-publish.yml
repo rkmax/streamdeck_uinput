@@ -19,6 +19,9 @@ jobs:
   deploy:
 
     runs-on: ubuntu-latest
+    environment:
+      name: deploy
+      url: https://test.pypi.org/p/streamdeck-uinput
     permissions:
       # IMPORTANT: this permission is mandatory for trusted publishing
       id-token: write
